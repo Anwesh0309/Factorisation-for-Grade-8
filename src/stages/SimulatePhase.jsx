@@ -110,9 +110,9 @@ const STATIONS = [
   { n: 3, icon: "🕵️", title: "Station 3: Factor Detective", sub: "Solve case files & verify" }
 ];
 
-const SIM_BOX = "[&>*]:shrink-0 flex flex-col items-center gap-3.5 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-2xl p-4 sm:p-5 shadow-xl flex-1 min-h-0 justify-between overflow-y-auto";
-const GOLD_BANNER = "w-full bg-cyan-950/90 border-2 border-cyan-400/60 p-3 rounded-2xl flex flex-col items-center fade-in-up shadow-xl shrink-0";
-const GOLD_PILL = "w-full min-h-10 px-4 py-2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 rounded-full flex items-center justify-center font-display font-900 text-slate-950 text-base sm:text-lg shadow-lg text-center leading-snug";
+const SIM_BOX = "flex flex-col items-center gap-2.5 sm:gap-3 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-2xl p-3 sm:p-4 shadow-xl flex-1 min-h-0 justify-between overflow-y-auto w-full";
+const GOLD_BANNER = "w-full bg-cyan-950/90 border-2 border-cyan-400/60 p-2.5 sm:p-3 rounded-xl flex flex-col items-center fade-in-up shadow-xl shrink-0";
+const GOLD_PILL = "w-full min-h-9 px-3 py-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 rounded-full flex items-center justify-center font-display font-900 text-slate-950 text-xs sm:text-base shadow-lg text-center leading-snug";
 
 const win = muted => { if (!muted) playFeedback(AUDIO_MAP.sim_win); };
 const tryAgain = muted => { if (!muted) playFeedback(AUDIO_MAP.sim_try); };
@@ -122,11 +122,11 @@ const gcd = (a, b) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
 function Stepper({ label, value, onChange, min = 1, max = 9 }) {
   return (
-    <div className="flex items-center gap-2 bg-[#14082c] px-3.5 py-2 rounded-xl border border-cyan-400/40 shadow-md">
+    <div className="flex items-center gap-1.5 bg-[#14082c] px-3 py-1.5 rounded-xl border border-cyan-400/40 shadow-md">
       <span className="text-xs sm:text-sm font-extrabold text-slate-200">{label}</span>
-      <button onClick={() => onChange(Math.max(min, value - 1))} className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/25 text-white font-black text-lg cursor-pointer transition flex items-center justify-center">−</button>
-      <span className="min-w-[2.4rem] text-center text-sm sm:text-base font-black text-amber-300 bg-amber-400/15 px-2.5 py-1 rounded-lg border border-amber-400/40">{value}</span>
-      <button onClick={() => onChange(Math.min(max, value + 1))} className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/25 text-white font-black text-lg cursor-pointer transition flex items-center justify-center">+</button>
+      <button onClick={() => onChange(Math.max(min, value - 1))} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/25 text-white font-black text-base cursor-pointer transition flex items-center justify-center">−</button>
+      <span className="min-w-[2rem] text-center text-xs sm:text-sm font-black text-amber-300 bg-amber-400/15 px-2 py-0.5 rounded-lg border border-amber-400/40">{value}</span>
+      <button onClick={() => onChange(Math.min(max, value + 1))} className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/25 text-white font-black text-base cursor-pointer transition flex items-center justify-center">+</button>
     </div>
   );
 }
@@ -152,8 +152,8 @@ function TileBuilder({ act, muted }) {
   }
 
   const Row = ({ color, name, used, need }) => (
-    <p className="flex items-center gap-2">
-      <span className="inline-block w-4 h-4 rounded-md shadow-sm" style={{ background: color }} />
+    <p className="flex items-center gap-1.5 text-xs sm:text-sm">
+      <span className="inline-block w-3.5 h-3.5 rounded shadow-sm shrink-0" style={{ background: color }} />
       <span>{name}:</span>
       <span className={`font-900 ${used === need ? 'text-emerald-300' : 'text-rose-300'}`}>{used} / {need} {used === need ? '✓' : ''}</span>
     </p>
@@ -161,18 +161,18 @@ function TileBuilder({ act, muted }) {
 
   return (
     <div className={SIM_BOX}>
-      <div className="w-full flex items-center justify-between bg-cyan-950/80 border border-cyan-400/30 px-4 py-2 rounded-xl text-xs sm:text-sm font-900 text-cyan-200 shrink-0">
+      <div className="w-full flex items-center justify-between bg-cyan-950/80 border border-cyan-400/30 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-900 text-cyan-200 shrink-0">
         <span>{act.realWorldTag}</span>
         <span>Target Area: x² + {act.c1}x + {act.c0} sq {act.unitName}</span>
       </div>
 
-      <div className="flex items-center gap-3 flex-wrap justify-center shrink-0">
+      <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center shrink-0">
         <Stepper label="Width = (x +" value={a} onChange={setA} />
         <Stepper label="Height = (x +" value={b} onChange={setB} />
       </div>
 
-      <div className="flex items-center justify-center gap-7 w-full flex-none py-1">
-        <svg viewBox="0 0 250 250" style={{ height: "clamp(130px, 26vh, 220px)", width: "auto" }} className="drop-shadow-[0_0_24px_rgba(56,189,248,0.65)] shrink-0">
+      <div className="flex items-center justify-center gap-4 sm:gap-6 w-full flex-wrap sm:flex-nowrap py-1 shrink-0">
+        <svg viewBox="0 0 250 250" style={{ height: "clamp(90px, 17vh, 160px)", width: "auto" }} className="drop-shadow-[0_0_20px_rgba(56,189,248,0.65)] shrink-0">
           <rect x={ox} y={oy} width={X} height={X} fill="#7c3aed" stroke="#ddd6fe" strokeWidth="2.5" />
           <text x={ox + X / 2} y={oy + X / 2} fill="#fff" fontSize="22" fontWeight="900" textAnchor="middle" dominantBaseline="middle">x²</text>
           {Array.from({ length: a }).map((_, i) => (
@@ -192,26 +192,26 @@ function TileBuilder({ act, muted }) {
           <text x={ox - 12} y={oy + X + (b * U) / 2 + 5} fill="#fb7185" fontSize="14" fontWeight="900" textAnchor="middle">+{b}</text>
         </svg>
 
-        <div className="flex flex-col gap-2 text-left text-sm sm:text-base font-extrabold text-slate-100 shrink-0 bg-[#13082b]/80 border border-purple-400/30 p-4 rounded-2xl">
-          <p className="text-cyan-300 text-xs font-900 uppercase tracking-wider">Tiles used / required</p>
+        <div className="flex flex-col gap-1.5 text-left text-xs sm:text-sm font-extrabold text-slate-100 shrink-0 bg-[#13082b]/80 border border-purple-400/30 p-3 rounded-xl">
+          <p className="text-cyan-300 text-[10px] sm:text-xs font-900 uppercase tracking-wider">Tiles used / required</p>
           <Row color="#7c3aed" name="x² Main Tile" used={1} need={1} />
           <Row color="#0ea5e9" name="x Line Strips" used={strips} need={act.c1} />
           <Row color="#facc15" name="Micro Units" used={units} need={act.c0} />
-          <div className="pt-1 border-t border-white/10 text-xs text-amber-300 font-bold">
-            Current Dimensions: (x + {a}) {act.unitName} × (x + {b}) {act.unitName}
+          <div className="pt-1 border-t border-white/10 text-[11px] sm:text-xs text-amber-300 font-bold">
+            Current: (x + {a}) {act.unitName} × (x + {b}) {act.unitName}
           </div>
         </div>
       </div>
 
       {fit ? (
         <div className={GOLD_BANNER}>
-          <span className="text-xs text-cyan-300 font-900 mb-1 uppercase tracking-wider">🎉 Perfect Layout! Real-World Dimensions Found:</span>
+          <span className="text-[11px] sm:text-xs text-cyan-300 font-900 mb-1 uppercase tracking-wider">🎉 Perfect Layout! Real-World Dimensions Found:</span>
           <div className={GOLD_PILL}>
             x² + {act.c1}x + {act.c0} = (x + {a})(x + {b}){a === b ? ` = (x + ${a})²` : ''} {act.unitName}
           </div>
         </div>
       ) : (
-        <div className="w-full p-3 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-xl text-xs sm:text-sm font-bold text-center shrink-0">
+        <div className="w-full p-2.5 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-xl text-xs sm:text-sm font-bold text-center shrink-0">
           🧱 {status} <span className="text-amber-300">💡 {act.hint}</span>
         </div>
       )}
@@ -248,24 +248,24 @@ function HcfLab({ act, muted }) {
 
   return (
     <div className={SIM_BOX}>
-      <div className="w-full flex items-center justify-between bg-purple-950/80 border border-purple-400/30 px-4 py-2 rounded-xl text-xs sm:text-sm font-900 text-purple-200 shrink-0">
+      <div className="w-full flex items-center justify-between bg-purple-950/80 border border-purple-400/30 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-900 text-purple-200 shrink-0">
         <span>{act.realWorldTag}</span>
         <span>{act.contextNote}</span>
       </div>
 
-      <div className="flex flex-col items-center gap-3 w-full flex-none justify-center">
-        <div className="flex items-center gap-3 bg-[#14082c] border-2 border-purple-400/50 rounded-2xl px-6 py-3 shadow-lg">
-          <span className="text-4xl">{act.icon}</span>
-          <span className="font-display font-900 text-2xl sm:text-4xl text-amber-300">{expr}</span>
+      <div className="flex flex-col items-center gap-2.5 w-full flex-none justify-center">
+        <div className="flex items-center gap-2.5 bg-[#14082c] border-2 border-purple-400/50 rounded-2xl px-4 py-2 shadow-lg">
+          <span className="text-2xl sm:text-3xl">{act.icon}</span>
+          <span className="font-display font-900 text-xl sm:text-3xl text-amber-300">{expr}</span>
         </div>
         <p className="text-xs sm:text-sm font-extrabold text-slate-200">How many identical boxes can Chef Leo pack?</p>
         
-        <div className="flex items-center gap-3 flex-wrap justify-center">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
           {act.choices.map((ch, i) => (
             <button
               key={i}
               onClick={() => setSel(i)}
-              className={`px-5 py-3 rounded-2xl font-display font-900 text-base sm:text-lg transition cursor-pointer border-2 shadow-md ${
+              className={`px-4 py-2 rounded-xl font-display font-900 text-xs sm:text-base transition cursor-pointer border-2 shadow-md ${
                 sel === i ? 'bg-amber-400 text-slate-950 border-amber-200 scale-105 shadow-xl' : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
               }`}
             >
@@ -275,11 +275,11 @@ function HcfLab({ act, muted }) {
         </div>
 
         {result && result.kind !== 'invalid' && (
-          <div className="w-full bg-[#14082c]/90 border-2 border-amber-400/40 p-3.5 rounded-2xl text-left text-xs sm:text-sm text-slate-100 flex flex-col gap-2 shadow-md">
-            <p className="text-amber-300 font-sans font-900 text-sm">Real-World Packing Breakdown:</p>
-            <p>• Number of identical boxes = <span className="text-cyan-300 font-bold">{result.boxCount}</span></p>
+          <div className="w-full bg-[#14082c]/90 border-2 border-amber-400/40 p-2.5 rounded-xl text-left text-xs sm:text-sm text-slate-100 flex flex-col gap-1 shadow-md">
+            <p className="text-amber-300 font-sans font-900 text-xs sm:text-sm">Real-World Packing Breakdown:</p>
+            <p>• Identical boxes = <span className="text-cyan-300 font-bold">{result.boxCount}</span></p>
             <p>• Contents per box = <span className="text-cyan-300 font-bold">{result.remCakes}x chocolate rolls + {result.remMuffins} vanilla muffins</span></p>
-            <div className="bg-amber-400/20 border-2 border-amber-400/60 p-2.5 rounded-xl text-amber-300 font-900 text-sm sm:text-lg text-center">
+            <div className="bg-amber-400/20 border-2 border-amber-400/60 p-2 rounded-lg text-amber-300 font-900 text-xs sm:text-base text-center">
               Factorised: {expr} = {result.boxCount}({result.inside})
             </div>
           </div>
@@ -287,7 +287,7 @@ function HcfLab({ act, muted }) {
       </div>
 
       {result && (
-        <div className={`p-3 rounded-2xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
+        <div className={`p-2.5 rounded-xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
           result.kind === 'full' ? 'bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60' : 'bg-rose-950/90 text-rose-300 border-2 border-rose-400/60'
         }`}>
           {result.kind === 'full' && `🎉 Fully Factorised! ${result.boxCount} is the Highest Common Factor (HCF). Every box gets exactly (${result.inside}) items with zero leftovers!`}
@@ -316,39 +316,39 @@ function DotsLab({ act, muted }) {
 
   return (
     <div className={SIM_BOX}>
-      <div className="w-full flex items-center justify-between bg-cyan-950/80 border border-cyan-400/30 px-4 py-2 rounded-xl text-xs sm:text-sm font-900 text-cyan-200 shrink-0">
+      <div className="w-full flex items-center justify-between bg-cyan-950/80 border border-cyan-400/30 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-900 text-cyan-200 shrink-0">
         <span>{act.realWorldTag}</span>
         <span>{act.contextNote}</span>
       </div>
 
-      <div className="flex items-center gap-3 flex-wrap justify-center shrink-0">
+      <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center shrink-0">
         <Stepper label="p =" value={p} onChange={setP} max={8} />
         <Stepper label="q =" value={q} onChange={setQ} max={12} />
-        <span className="font-display font-900 text-base sm:text-lg text-amber-300">Target Lawn: {target} m²</span>
+        <span className="font-display font-900 text-xs sm:text-base text-amber-300">Target Lawn: {target} m²</span>
       </div>
 
-      <div className="flex items-center justify-center gap-4 w-full flex-none">
-        <div className="bg-purple-900/60 border-2 border-purple-300/60 rounded-2xl px-5 py-3.5 font-display font-900 text-xl sm:text-2xl text-white">({px} − {q})</div>
-        <span className="text-3xl sm:text-4xl">🪞</span>
-        <div className="bg-cyan-900/60 border-2 border-cyan-300/60 rounded-2xl px-5 py-3.5 font-display font-900 text-xl sm:text-2xl text-white">({px} + {q})</div>
+      <div className="flex items-center justify-center gap-3 w-full flex-none">
+        <div className="bg-purple-900/60 border-2 border-purple-300/60 rounded-xl px-4 py-2 font-display font-900 text-lg sm:text-xl text-white">({px} − {q})</div>
+        <span className="text-2xl sm:text-3xl">🪞</span>
+        <div className="bg-cyan-900/60 border-2 border-cyan-300/60 rounded-xl px-4 py-2 font-display font-900 text-lg sm:text-xl text-white">({px} + {q})</div>
       </div>
 
-      <div className="w-full bg-[#14082c]/90 border-2 border-amber-400/40 p-3 rounded-2xl text-left text-xs sm:text-sm text-slate-100 flex flex-col gap-1 shrink-0 font-mono">
+      <div className="w-full bg-[#14082c]/90 border-2 border-amber-400/40 p-2.5 rounded-xl text-left text-xs sm:text-sm text-slate-100 flex flex-col gap-1 shrink-0 font-mono">
         <p className="text-amber-300 font-sans font-900 text-xs sm:text-sm">Real-World Expansion Verification:</p>
-        <p>1. Outer Lawn + Inner Lawn: <span className="text-emerald-300 font-bold">+{p * q}x</span> and <span className="text-rose-300 font-bold">−{p * q}x</span> → <span className="text-amber-300 font-bold">0 (middle terms cancel! ✨)</span></p>
+        <p>1. Outer + Inner: <span className="text-emerald-300 font-bold">+{p * q}x</span> and <span className="text-rose-300 font-bold">−{p * q}x</span> → <span className="text-amber-300 font-bold">0 (middle terms cancel! ✨)</span></p>
         <p>2. Fountain Area Subtracted: (−{q}) × ({q}) = <span className="text-cyan-300 font-bold">−{q * q} m²</span></p>
-        <div className="bg-amber-400/20 border-2 border-amber-400/60 p-2 rounded-xl text-amber-300 font-900 text-sm sm:text-base text-center font-sans">
+        <div className="bg-amber-400/20 border-2 border-amber-400/60 p-1.5 rounded-lg text-amber-300 font-900 text-xs sm:text-sm text-center font-sans">
           ({px} − {q})({px} + {q}) = {result}
         </div>
       </div>
 
       {ok ? (
-        <div className="p-3 rounded-2xl text-xs sm:text-sm font-900 w-full text-center bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60 shrink-0">
+        <div className="p-2.5 rounded-xl text-xs sm:text-sm font-900 w-full text-center bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60 shrink-0">
           🎉 Match! Fountain Lawn Area {target} = ({px} − {q})({px} + {q}) meters! The middle terms cancelled perfectly!
         </div>
       ) : (
-        <div className="p-3 rounded-2xl text-xs sm:text-sm font-bold w-full text-center bg-amber-950/90 text-amber-200 border border-amber-400/50 shrink-0">
-          💡 Need p² = {act.P * act.P} and q² = {act.Q * act.Q} (since fountain side is 7, q² = 49). Your current values: p² = {p * p}, q² = {q * q}.
+        <div className="p-2.5 rounded-xl text-xs sm:text-sm font-bold w-full text-center bg-amber-950/90 text-amber-200 border border-amber-400/50 shrink-0">
+          💡 Need p² = {act.P * act.P} and q² = {act.Q * act.Q} (fountain side is 7, q² = 49). Current: p² = {p * p}, q² = {q * q}.
         </div>
       )}
     </div>
@@ -384,18 +384,18 @@ function SumProdLab({ act, muted }) {
 
   return (
     <div className={SIM_BOX}>
-      <div className="w-full flex items-center justify-between bg-amber-950/80 border border-amber-400/30 px-4 py-2 rounded-xl text-xs sm:text-sm font-900 text-amber-200 shrink-0">
+      <div className="w-full flex items-center justify-between bg-amber-950/80 border border-amber-400/30 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-900 text-amber-200 shrink-0">
         <span>{act.realWorldTag}</span>
         <span>{act.contextNote}</span>
       </div>
 
-      <div className="flex items-center gap-3 flex-wrap justify-center shrink-0">
-        <span className="font-display font-900 text-xl sm:text-2xl text-amber-300">{expr}</span>
-        <span className="bg-cyan-400/15 border border-cyan-400/40 text-cyan-200 font-900 text-xs sm:text-sm px-3 py-1 rounded-full">Product (c) = {fmtM(act.c)}</span>
-        <span className="bg-amber-400/15 border border-amber-400/40 text-amber-200 font-900 text-xs sm:text-sm px-3 py-1 rounded-full">Sum (b) = {fmtM(act.b)}</span>
+      <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center shrink-0">
+        <span className="font-display font-900 text-lg sm:text-xl text-amber-300">{expr}</span>
+        <span className="bg-cyan-400/15 border border-cyan-400/40 text-cyan-200 font-900 text-xs px-2.5 py-0.5 rounded-full">Product (c) = {fmtM(act.c)}</span>
+        <span className="bg-amber-400/15 border border-amber-400/40 text-amber-200 font-900 text-xs px-2.5 py-0.5 rounded-full">Sum (b) = {fmtM(act.b)}</span>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full flex-none content-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full flex-none content-center">
         {pairs.map(([m, n], i) => {
           const s = m + n;
           const active = sel === i;
@@ -403,19 +403,19 @@ function SumProdLab({ act, muted }) {
             <button
               key={i}
               onClick={() => setSel(i)}
-              className={`rounded-2xl border-2 px-3 py-2.5 text-center cursor-pointer transition font-display font-900 ${
+              className={`rounded-xl border-2 px-2.5 py-2 text-center cursor-pointer transition font-display font-900 ${
                 active ? (s === act.b ? 'bg-emerald-600/80 border-emerald-300 scale-105' : 'bg-rose-700/70 border-rose-300') : 'bg-[#14082c] border-purple-400/40 hover:border-cyan-400'
               }`}
             >
-              <span className="block text-base sm:text-lg text-white">{fmtM(m)} × {fmtM(n)}</span>
-              <span className={`block text-xs ${active ? 'text-white' : 'text-slate-300'}`}>{active ? `Sum = ${fmtM(s)}` : 'Test Sum'}</span>
+              <span className="block text-sm sm:text-base text-white">{fmtM(m)} × {fmtM(n)}</span>
+              <span className={`block text-[11px] ${active ? 'text-white' : 'text-slate-300'}`}>{active ? `Sum = ${fmtM(s)}` : 'Test Sum'}</span>
             </button>
           );
         })}
       </div>
 
       {chosen && (
-        <div className={`p-3 rounded-2xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
+        <div className={`p-2.5 rounded-xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
           ok ? 'bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60' : 'bg-rose-950/90 text-rose-300 border-2 border-rose-400/60'
         }`}>
           {ok
@@ -449,24 +449,24 @@ function Detective({ act, muted }) {
 
   return (
     <div className={SIM_BOX}>
-      <div className="w-full flex items-center justify-between bg-indigo-950/80 border border-indigo-400/30 px-4 py-2 rounded-xl text-xs sm:text-sm font-900 text-indigo-200 shrink-0">
+      <div className="w-full flex items-center justify-between bg-indigo-950/80 border border-indigo-400/30 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-900 text-indigo-200 shrink-0">
         <span>{act.realWorldTag}</span>
         <span>Case File #{act.id}</span>
       </div>
 
-      <div className="flex items-center justify-center gap-6 w-full flex-none">
-        <div className="w-24 h-24 rounded-2xl bg-[#14082c] border-2 border-purple-400/50 flex flex-col items-center justify-center shadow-lg shrink-0">
-          <span className="text-4xl">{act.icon}</span>
-          <span className="text-[10px] font-black text-amber-300 uppercase mt-1">Grade 7 Case</span>
+      <div className="flex items-center justify-center gap-4 w-full flex-none">
+        <div className="w-16 h-16 rounded-xl bg-[#14082c] border-2 border-purple-400/50 flex flex-col items-center justify-center shadow-lg shrink-0">
+          <span className="text-2xl sm:text-3xl">{act.icon}</span>
+          <span className="text-[9px] font-black text-amber-300 uppercase mt-0.5">Grade 7 Case</span>
         </div>
-        <div className="text-left text-xs sm:text-sm font-extrabold text-slate-100 flex flex-col gap-1.5 shrink-0 bg-[#13082b]/80 border border-purple-400/30 p-3.5 rounded-2xl flex-1">
-          <p>• Expression: <span className="text-amber-300 font-900 text-base">{act.expr}</span></p>
+        <div className="text-left text-xs sm:text-sm font-extrabold text-slate-100 flex flex-col gap-1 shrink-0 bg-[#13082b]/80 border border-purple-400/30 p-2.5 rounded-xl flex-1">
+          <p>• Expression: <span className="text-amber-300 font-900 text-sm sm:text-base">{act.expr}</span></p>
           <p>• Story Method: <span className="text-cyan-300 font-900">{act.method}</span></p>
-          <p>• Task: <span className="text-white font-900">Fill in the missing integer values</span></p>
+          <p>• Task: <span className="text-white font-900">Fill in missing integers</span></p>
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 flex-wrap w-full shrink-0 font-display font-900 text-2xl sm:text-3xl text-white bg-[#14082c] p-4 rounded-2xl border border-cyan-400/30">
+      <div className="flex items-center justify-center gap-2 flex-wrap w-full shrink-0 font-display font-900 text-xl sm:text-2xl text-white bg-[#14082c] p-3 rounded-xl border border-cyan-400/30">
         {act.parts.map((part, i) =>
           typeof part === 'number' ? (
             <input
@@ -474,7 +474,7 @@ function Detective({ act, muted }) {
               type="number"
               value={vals[part]}
               onChange={e => { const nv = [...vals]; nv[part] = e.target.value; setVals(nv); setFeedback(null); }}
-              className="bg-[#1e1342] border-2 border-amber-400 rounded-xl w-20 py-2 text-amber-300 font-display font-900 text-2xl text-center outline-none focus:ring-4 focus:ring-amber-400/30 shadow-inner"
+              className="bg-[#1e1342] border-2 border-amber-400 rounded-lg w-16 py-1 text-amber-300 font-display font-900 text-xl text-center outline-none focus:ring-4 focus:ring-amber-400/30 shadow-inner"
               placeholder="?"
             />
           ) : (
@@ -483,26 +483,26 @@ function Detective({ act, muted }) {
         )}
       </div>
 
-      <div className="flex items-center gap-3.5 w-full justify-center shrink-0">
-        <button onClick={check} className="btn-gold text-sm sm:text-base font-900 px-7 py-3 shadow-lg hover:scale-105 transition cursor-pointer">
+      <div className="flex items-center gap-3 w-full justify-center shrink-0">
+        <button onClick={check} className="btn-gold text-xs sm:text-sm font-900 px-5 py-2 shadow-lg hover:scale-105 transition cursor-pointer">
           Verify Solution ✨
         </button>
         <button
           onClick={() => setShowHint(h => !h)}
-          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs sm:text-sm px-4 py-3 rounded-xl transition cursor-pointer"
+          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs sm:text-sm px-3.5 py-2 rounded-xl transition cursor-pointer"
         >
           💡 Hint
         </button>
       </div>
 
       {showHint && (
-        <div className="p-3 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-xl text-xs sm:text-sm font-bold w-full text-center fade-in-up shrink-0">
+        <div className="p-2.5 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-xl text-xs sm:text-sm font-bold w-full text-center fade-in-up shrink-0">
           💡 {act.hint}
         </div>
       )}
 
       {feedback && (
-        <div className={`p-3 rounded-2xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
+        <div className={`p-2.5 rounded-xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 ${
           feedback.success ? 'bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60' : 'bg-rose-950/90 text-rose-300 border-2 border-rose-400/60'
         }`}>
           {feedback.text}
@@ -546,46 +546,46 @@ export function SimulatePhase({ muted, onNext }) {
   };
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 relative overflow-hidden select-none z-10">
+    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-2.5 sm:p-4 md:p-5 relative overflow-hidden select-none z-10">
       <BgSymbols />
 
       {/* Main Simulation Stations Container */}
-      <div className="w-full max-w-6xl max-h-[94vh] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-3xl p-5 sm:p-7 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-hidden">
+      <div className="w-full max-w-6xl max-h-[calc(100vh-3.5rem)] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-3xl p-3.5 sm:p-5 md:p-6 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-hidden">
         {/* Accent Bar */}
-        <div className="w-24 h-2 bg-cyan-400 rounded-full mb-2.5 shadow-[0_0_18px_rgba(56,189,248,0.85)] shrink-0" />
+        <div className="w-20 sm:w-24 h-1.5 sm:h-2 bg-cyan-400 rounded-full mb-1.5 sm:mb-2 shadow-[0_0_18px_rgba(56,189,248,0.85)] shrink-0" />
 
         {/* Card Header Title */}
-        <h2 className="font-display font-900 text-2xl sm:text-3xl text-white flex items-center gap-3 mb-3.5 shrink-0">
-          <span className="text-3xl sm:text-4xl">🧪</span>
+        <h2 className="font-display font-900 text-xl sm:text-2xl md:text-3xl text-white flex items-center gap-2.5 mb-2 sm:mb-3 shrink-0">
+          <span className="text-2xl sm:text-3xl">🧪</span>
           <span>Real-World Simulation Stations</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 w-full items-stretch flex-1 min-h-0 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-5 w-full items-stretch flex-1 min-h-0 overflow-hidden">
           {/* Left Column: Station Sidebar Tabs */}
-          <div className="md:col-span-4 flex flex-col justify-between gap-3 shrink-0">
-            <div className="flex flex-col gap-3.5">
+          <div className="md:col-span-4 flex flex-col justify-between gap-2.5 shrink-0">
+            <div className="flex flex-col gap-2.5 sm:gap-3">
               {STATIONS.map(st => (
                 <button
                   key={st.n}
                   onClick={() => { setStation(st.n); setActIdx(0); }}
-                  className={`p-4 sm:p-5 rounded-2xl border-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer ${
+                  className={`p-3 sm:p-4 rounded-xl border-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer ${
                     station === st.n
-                      ? 'border-cyan-400 bg-[#1e2852] text-white shadow-[0_0_22px_rgba(56,189,248,0.4)] scale-[1.02]'
+                      ? 'border-cyan-400 bg-[#1e2852] text-white shadow-[0_0_22px_rgba(56,189,248,0.4)] scale-[1.01]'
                       : 'border-purple-500/25 bg-[#13082b]/80 text-slate-300 hover:border-cyan-400/50'
                   }`}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl font-bold shrink-0 ${
+                  <div className="flex items-center gap-3">
+                    <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-xl sm:text-2xl font-bold shrink-0 ${
                       station === st.n ? 'bg-cyan-500/30 text-cyan-300' : 'bg-white/10 text-white'
                     }`}>
                       {st.icon}
                     </div>
                     <div>
-                      <p className="font-display font-900 text-base sm:text-lg leading-tight">{st.title}</p>
-                      <p className="text-xs font-extrabold text-slate-300 mt-0.5">{st.sub}</p>
+                      <p className="font-display font-900 text-sm sm:text-base leading-tight">{st.title}</p>
+                      <p className="text-[11px] sm:text-xs font-extrabold text-slate-300 mt-0.5">{st.sub}</p>
                     </div>
                   </div>
-                  <span className="text-base">🔓</span>
+                  <span className="text-sm sm:text-base">🔓</span>
                 </button>
               ))}
             </div>
@@ -593,7 +593,7 @@ export function SimulatePhase({ muted, onNext }) {
             {/* Bottom Left CTA Button */}
             <button
               onClick={onNext}
-              className="btn-gold font-display font-900 text-base sm:text-lg py-4 px-6 shadow-[0_0_25px_rgba(250,204,21,0.65)] hover:scale-105 transition mt-2 w-full flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              className="btn-gold font-display font-900 text-sm sm:text-base py-3 px-5 shadow-[0_0_25px_rgba(250,204,21,0.65)] hover:scale-105 transition mt-1 w-full flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
               <span>Go to Practice Phase!</span>
               <span>→</span>
@@ -601,21 +601,21 @@ export function SimulatePhase({ muted, onNext }) {
           </div>
 
           {/* Right Column: Interactive Simulation Box */}
-          <div className="md:col-span-8 bg-[#13092e]/95 border-2 border-purple-400/35 rounded-3xl p-5 sm:p-6 flex flex-col justify-between shadow-inner flex-1 min-h-0 overflow-hidden">
+          <div className="md:col-span-8 bg-[#13092e]/95 border-2 border-purple-400/35 rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between shadow-inner flex-1 min-h-0 overflow-hidden">
             <div className="flex flex-col flex-1 min-h-0 justify-between">
               {/* Header Row */}
-              <div className="flex items-center justify-between border-b border-white/15 pb-3 mb-3 shrink-0 gap-3">
-                <h3 className="font-display font-900 text-xl sm:text-2xl text-cyan-300 flex items-center gap-3">
-                  <span className="text-3xl sm:text-4xl">{currentActivity.icon}</span>
+              <div className="flex items-center justify-between border-b border-white/15 pb-2 mb-2 shrink-0 gap-2">
+                <h3 className="font-display font-900 text-lg sm:text-xl md:text-2xl text-cyan-300 flex items-center gap-2">
+                  <span className="text-2xl sm:text-3xl">{currentActivity.icon}</span>
                   <span>{currentActivity.title}</span>
                 </h3>
-                <span className="font-display font-900 text-xs sm:text-sm text-slate-200 bg-white/10 px-4 py-1 rounded-full border border-white/15 shrink-0">
+                <span className="font-display font-900 text-[11px] sm:text-xs text-slate-200 bg-white/10 px-3 py-1 rounded-full border border-white/15 shrink-0">
                   Activity {actIdx + 1} of 3
                 </span>
               </div>
 
               {/* Activity Description */}
-              <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-extrabold mb-3 shrink-0">
+              <p className="text-slate-100 text-xs sm:text-sm md:text-base leading-snug font-extrabold mb-2 shrink-0">
                 {currentActivity.desc}
               </p>
 
@@ -623,17 +623,17 @@ export function SimulatePhase({ muted, onNext }) {
             </div>
 
             {/* Bottom Activity Step Buttons */}
-            <div className="flex items-center justify-between border-t border-white/15 pt-4 mt-3 shrink-0">
+            <div className="flex items-center justify-between border-t border-white/15 pt-2.5 mt-2 shrink-0">
               <button
                 onClick={prevActivity}
                 disabled={station === 1 && actIdx === 0}
-                className="bg-[#1c0d3a]/90 hover:bg-[#2c1859] border-2 border-white/25 text-white font-display font-900 text-sm sm:text-base px-6 py-2.5 rounded-full cursor-pointer transition disabled:opacity-30 disabled:cursor-not-allowed"
+                className="bg-[#1c0d3a]/90 hover:bg-[#2c1859] border-2 border-white/25 text-white font-display font-900 text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full cursor-pointer transition disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 ← Previous Activity
               </button>
               <button
                 onClick={nextActivity}
-                className="btn-gold text-sm sm:text-base font-900 px-8 py-2.5 rounded-full flex items-center gap-2 shadow-lg hover:scale-105 transition cursor-pointer"
+                className="btn-gold text-xs sm:text-sm font-900 px-5 sm:px-7 py-2 rounded-full flex items-center gap-1.5 shadow-lg hover:scale-105 transition cursor-pointer"
               >
                 <span>{station === 3 && actIdx === 2 ? 'Go to Practice Phase' : 'Next Activity'}</span>
                 <span>→</span>

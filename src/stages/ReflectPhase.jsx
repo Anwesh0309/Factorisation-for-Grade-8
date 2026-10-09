@@ -24,60 +24,60 @@ export function ReflectPhase({ xp, stars, bestStreak, worldResults, muted, onCom
   const charCount = reflectionText.trim().length;
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 relative overflow-hidden select-none z-10">
+    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 relative overflow-hidden select-none z-10">
       <BgSymbols />
 
       {/* Main Glass Card Frame with Scaled Up Grade 4 Typography */}
-      <div className="w-full max-w-4xl max-h-[94vh] bg-[#160b38]/95 border-2 border-purple-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-hidden">
+      <div className="w-full max-w-4xl max-h-[calc(100vh-3.5rem)] bg-[#160b38]/95 border-2 border-purple-400/40 rounded-3xl p-4 sm:p-6 md:p-7 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-y-auto">
         
         {/* Glowing Accent Line */}
-        <div className="w-24 h-2 bg-purple-400 rounded-full mb-3 shadow-[0_0_18px_rgba(168,85,247,0.85)] shrink-0" />
+        <div className="w-20 sm:w-24 h-1.5 sm:h-2 bg-purple-400 rounded-full mb-2 sm:mb-3 shadow-[0_0_18px_rgba(168,85,247,0.85)] shrink-0" />
 
         {/* Main Title */}
-        <h2 className="font-display font-900 text-3xl sm:text-4xl text-white mb-5 flex items-center gap-3 shrink-0">
-          <span className="text-4xl sm:text-5xl">🏆</span>
+        <h2 className="font-display font-900 text-2xl sm:text-3xl md:text-4xl text-white mb-3 sm:mb-4 flex items-center gap-2.5 shrink-0">
+          <span className="text-3xl sm:text-4xl md:text-5xl">🏆</span>
           <span>Reflect & Scoreboard</span>
         </h2>
 
         {/* Top 3 Score Cards (Total XP | Stars | Best Streak) */}
-        <div className="grid grid-cols-3 gap-4.5 w-full mb-5 shrink-0">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4.5 w-full mb-3.5 sm:mb-5 shrink-0">
           {/* Card 1: Total XP */}
-          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-lg">
-            <span className="text-3xl mb-1">✨</span>
-            <span className="font-display font-900 text-3xl sm:text-4xl text-amber-400 mb-0.5">{xp}</span>
-            <span className="text-sm sm:text-base font-900 text-slate-200">Total XP</span>
+          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-3 sm:p-4 flex flex-col items-center text-center shadow-lg">
+            <span className="text-2xl sm:text-3xl mb-0.5">✨</span>
+            <span className="font-display font-900 text-2xl sm:text-3xl md:text-4xl text-amber-400 mb-0.5">{xp}</span>
+            <span className="text-xs sm:text-sm font-900 text-slate-200">Total XP</span>
           </div>
 
           {/* Card 2: Stars */}
-          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-lg">
-            <span className="text-3xl mb-1">⭐</span>
-            <span className="font-display font-900 text-3xl sm:text-4xl text-amber-400 mb-0.5">{stars} / 30</span>
-            <span className="text-sm sm:text-base font-900 text-slate-200">Stars</span>
+          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-3 sm:p-4 flex flex-col items-center text-center shadow-lg">
+            <span className="text-2xl sm:text-3xl mb-0.5">⭐</span>
+            <span className="font-display font-900 text-2xl sm:text-3xl md:text-4xl text-amber-400 mb-0.5">{stars} / 30</span>
+            <span className="text-xs sm:text-sm font-900 text-slate-200">Stars</span>
           </div>
 
           {/* Card 3: Best Streak */}
-          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-lg">
-            <span className="text-3xl mb-1">🔥</span>
-            <span className="font-display font-900 text-3xl sm:text-4xl text-amber-400 mb-0.5">{bestStreak}</span>
-            <span className="text-sm sm:text-base font-900 text-slate-200">Best Streak</span>
+          <div className="bg-[#1a0e42]/95 border-2 border-purple-400/35 rounded-2xl p-3 sm:p-4 flex flex-col items-center text-center shadow-lg">
+            <span className="text-2xl sm:text-3xl mb-0.5">🔥</span>
+            <span className="font-display font-900 text-2xl sm:text-3xl md:text-4xl text-amber-400 mb-0.5">{bestStreak}</span>
+            <span className="text-xs sm:text-sm font-900 text-slate-200">Best Streak</span>
           </div>
         </div>
 
         {/* WORLD RESULTS Section */}
-        <div className="w-full flex flex-col items-center mb-4 shrink-0">
-          <span className="text-sm font-900 text-amber-400 tracking-wider uppercase mb-2">
+        <div className="w-full flex flex-col items-center mb-3 sm:mb-4 shrink-0">
+          <span className="text-xs sm:text-sm font-900 text-amber-400 tracking-wider uppercase mb-1.5 sm:mb-2">
             WORLD RESULTS
           </span>
-          <div className="grid grid-cols-5 sm:grid-cols-10 gap-2.5 w-full">
+          <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-2.5 w-full">
             {PRACTICE_WORLDS.map((w, idx) => {
               const res = worldResults[idx];
               return (
                 <div
                   key={w.id}
-                  className="bg-[#1a0e42]/80 border-2 border-purple-400/30 rounded-xl p-2 sm:p-2.5 flex flex-col items-center justify-between text-center min-h-[60px] shadow-sm"
+                  className="bg-[#1a0e42]/80 border-2 border-purple-400/30 rounded-xl p-1.5 sm:p-2.5 flex flex-col items-center justify-between text-center min-h-[50px] sm:min-h-[60px] shadow-sm"
                 >
-                  <span className="text-xs sm:text-sm font-black text-slate-200">W{idx + 1}</span>
-                  <span className="text-xs sm:text-sm font-900 text-amber-400 mt-1">
+                  <span className="text-[11px] sm:text-xs font-black text-slate-200">W{idx + 1}</span>
+                  <span className="text-xs sm:text-sm font-900 text-amber-400 mt-0.5">
                     {res != null && res > 0 ? `${res}★` : '—'}
                   </span>
                 </div>
@@ -87,30 +87,30 @@ export function ReflectPhase({ xp, stars, bestStreak, worldResults, muted, onCom
         </div>
 
         {/* Horizontal Divider Line */}
-        <div className="w-full border-t border-white/15 my-3 shrink-0" />
+        <div className="w-full border-t border-white/15 my-2.5 sm:my-3 shrink-0" />
 
         {/* Bottom Reflection Section with Robo Avatar */}
-        <div className="w-full flex items-start gap-4 mb-4 shrink-0">
+        <div className="w-full flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4 shrink-0">
           {/* Left Robo Avatar */}
-          <div className="w-16 h-16 rounded-full bg-[#1e0e4a] border-2 border-cyan-400 flex items-center justify-center text-4xl shadow-lg shrink-0 mt-1">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#1e0e4a] border-2 border-cyan-400 flex items-center justify-center text-3xl sm:text-4xl shadow-lg shrink-0 mt-1">
             🤖
           </div>
 
           {/* Right Question Prompt & Textarea */}
           <div className="flex-1 flex flex-col text-left">
-            <h3 className="font-display font-900 text-lg sm:text-xl text-white mb-2 leading-tight">
+            <h3 className="font-display font-900 text-base sm:text-lg md:text-xl text-white mb-1.5 sm:mb-2 leading-tight">
               What did you learn about factorising? Explain it to Robo with an example!
             </h3>
 
-            <div className="w-full bg-[#0e0626] border-2 border-purple-400/40 rounded-2xl p-4 flex flex-col relative shadow-inner">
+            <div className="w-full bg-[#0e0626] border-2 border-purple-400/40 rounded-2xl p-3 sm:p-4 flex flex-col relative shadow-inner">
               <textarea
-                rows="3"
+                rows="2"
                 value={reflectionText}
                 onChange={e => setReflectionText(e.target.value)}
                 placeholder="Dear Robo, factorising is when we..."
-                className="w-full bg-transparent text-base sm:text-lg font-extrabold text-white placeholder-slate-400 outline-none resize-none font-sans"
+                className="w-full bg-transparent text-sm sm:text-base font-extrabold text-white placeholder-slate-400 outline-none resize-none font-sans"
               />
-              <div className="text-xs font-black text-slate-300 text-right mt-1">
+              <div className="text-[11px] sm:text-xs font-black text-slate-300 text-right mt-1">
                 {charCount} / {minLength} min chars
               </div>
             </div>
@@ -121,7 +121,7 @@ export function ReflectPhase({ xp, stars, bestStreak, worldResults, muted, onCom
         <button
           disabled={charCount < minLength}
           onClick={handleSubmit}
-          className="btn-gold font-display font-900 text-lg sm:text-xl px-10 py-3.5 rounded-full shadow-[0_0_25px_rgba(250,204,21,0.65)] hover:scale-105 transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+          className="btn-gold font-display font-900 text-base sm:text-lg px-8 sm:px-10 py-2.5 sm:py-3.5 rounded-full shadow-[0_0_25px_rgba(250,204,21,0.65)] hover:scale-105 transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
         >
           Complete Lesson! 🎉
         </button>
