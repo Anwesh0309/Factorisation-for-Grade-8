@@ -17,7 +17,7 @@ const STORY_SLIDES = [
     id: 2,
     title: "Terms & Factors",
     audioKey: "story_2",
-    image: "/assets/images/slide2.svg",
+    image: "/assets/images/slide2.jpg",
     body: "An expression is made of terms joined by + or − signs. In 6x² + 9x the terms are 6x² and 9x. A factor divides a term exactly: 6x² = 2 × 3 × x × x and 9x = 3 × 3 × x, so both terms share 3 and x!",
     quote: "Highest Common Factor (HCF) of 6x² and 9x = 3x",
     bubble: "Look for what every term shares!"
@@ -26,7 +26,7 @@ const STORY_SLIDES = [
     id: 3,
     title: "Method 1: Take Out the Common Factor",
     audioKey: "story_3",
-    image: "/assets/images/slide3.svg",
+    image: "/assets/images/slide3.jpg",
     body: "Find the HCF of all the terms, write it outside the bracket, and put what is left inside. For 6x + 9 the HCF is 3, so 6x + 9 = 3(2x + 3). Always check by expanding: 3 × 2x + 3 × 3 = 6x + 9 ✓",
     quote: "Common factor first: 12x² + 18x = 6x(2x + 3)",
     bubble: "Pull out the biggest factor, then expand to check!"
@@ -35,7 +35,7 @@ const STORY_SLIDES = [
     id: 4,
     title: "Method 2: Factorise by Grouping",
     audioKey: "story_4",
-    image: "/assets/images/slide4.svg",
+    image: "/assets/images/slide4.jpg",
     body: "With four terms, group them in pairs and take out each pair's common factor. xy + 3x + 2y + 6 becomes x(y + 3) + 2(y + 3). Now (y + 3) is common to both, so we get (x + 2)(y + 3).",
     quote: "x(y + 3) + 2(y + 3) = (x + 2)(y + 3)",
     bubble: "If the brackets match, you've grouped correctly!"
@@ -44,7 +44,7 @@ const STORY_SLIDES = [
     id: 5,
     title: "Method 3: Difference of Two Squares",
     audioKey: "story_5",
-    image: "/assets/images/slide5.svg",
+    image: "/assets/images/slide5.jpg",
     body: "When one perfect square is subtracted from another, the middle terms cancel when you expand: (a − b)(a + b) = a² − b². So x² − 49 = (x − 7)(x + 7), because 49 is 7²!",
     quote: "a² − b² = (a − b)(a + b)",
     bubble: "Two squares with a minus sign between them — that's the clue!"
@@ -53,7 +53,7 @@ const STORY_SLIDES = [
     id: 6,
     title: "Method 4: Sum & Product Trinomials",
     audioKey: "story_6",
-    image: "/assets/images/slide6.svg",
+    image: "/assets/images/slide6.jpg",
     body: "To factorise x² + bx + c, find two numbers that multiply to c and add to b. For x² + 7x + 12 we need product 12 and sum 7 — that's 3 and 4. So x² + 7x + 12 = (x + 3)(x + 4).",
     quote: "Product = c, Sum = b  →  (x + p)(x + q)",
     bubble: "Try factor pairs of c until the sum matches b!"
@@ -62,7 +62,7 @@ const STORY_SLIDES = [
     id: 7,
     title: "Perfect Squares & Sign Rules",
     audioKey: "story_7",
-    image: "/assets/images/slide7.svg",
+    image: "/assets/images/slide7.jpg",
     body: "Sometimes both numbers are the same: x² + 6x + 9 = (x + 3)². Signs matter too — a positive c means both numbers share a sign, and a negative c means they have opposite signs.",
     quote: "a² ± 2ab + b² = (a ± b)²",
     bubble: "Same signs for +c, opposite signs for −c!"
@@ -71,7 +71,7 @@ const STORY_SLIDES = [
     id: 8,
     title: "Step Into the Factor Lab!",
     audioKey: "story_8",
-    image: "/assets/images/slide8.svg",
+    image: "/assets/images/slide8.jpg",
     body: "Awesome job! You now know four factorising methods and how to check them by expanding. Now step into the lab to build rectangles from tiles, choose the right method, and play factor detective!",
     quote: "Ready to test your factorising skills?",
     bubble: "Click below to enter the interactive lab!"
